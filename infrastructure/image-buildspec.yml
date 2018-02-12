@@ -4,8 +4,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - docker build -f infrastructure/Dockerfile -t maven_image:1.0 .
+      - docker build -f infrastructure/Dockerfile -t maven_image .
   post_build:
     commands:
-      - ECR_ACCOUNT_ID=193006638607
-      - eval $(aws ecr get-login --registry-ids ${ECR_ACCOUNT_ID}) && docker push maven_image:1.0 
+      - eval $(aws ecr get-login --registry-ids 193006638607) && docker push maven_image 
