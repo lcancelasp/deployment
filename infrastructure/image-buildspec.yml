@@ -7,4 +7,4 @@ phases:
       - docker build -f infrastructure/Dockerfile -t maven_image .
   post_build:
     commands:
-      - eval $(aws ecr get-login --registry-ids 193006638607) && docker push maven_image 
+      - eval $(aws ecr get-login --no-include-email --region eu-west-1) && docker tag maven_image:latest 193006638607.dkr.ecr.eu-west-1.amazonaws.com/maven_image:latest && docker push 193006638607.dkr.ecr.eu-west-1.amazonaws.com/maven_image:latest
