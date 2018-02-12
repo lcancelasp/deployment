@@ -95,7 +95,7 @@ Resources:
             RoleArn: !GetAtt CloudformationRole.Arn
             StackName: !Ref ApplicationStackName
             ChangeSetName: changeset
-            TemplatePath: !Sub "MyAppBuild::packaged-sam.yml" # Must match buildspec.yml value
+            TemplatePath: !Sub "MyAppBuild::packaged-sam.yml"
           RunOrder: 1
         - Name: ExecuteChangeSet
           ActionTypeId:
@@ -128,7 +128,7 @@ Resources:
             Service: codebuild.amazonaws.com
           Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AdministratorAccess #TODO: Reduce permissions
+        - arn:aws:iam::aws:policy/AdministratorAccess
 
   CodePipelineRole:
     Type: AWS::IAM::Role
@@ -141,7 +141,7 @@ Resources:
             Service: codepipeline.amazonaws.com
           Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AdministratorAccess #TODO: Reduce permissions
+        - arn:aws:iam::aws:policy/AdministratorAccess
 
   CloudformationRole:
     Type: AWS::IAM::Role
@@ -154,4 +154,4 @@ Resources:
             Service: cloudformation.amazonaws.com
           Action: sts:AssumeRole
       ManagedPolicyArns:
-- arn:aws:iam::aws:policy/AdministratorAccess #TODO: Reduce permissions
+        - arn:aws:iam::aws:policy/AdministratorAccess

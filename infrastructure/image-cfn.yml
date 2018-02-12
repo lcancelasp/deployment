@@ -1,6 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Image Pipeline
-
 Parameters:
   GitHubToken:
     Type: String
@@ -15,9 +14,7 @@ Parameters:
     Type: String
     Default: serverless-app
     AllowedPattern: "[A-Za-z0-9-]+"
-
 Resources:
-
   ImageRepository:
     Type: AWS::ECR::Repository
     Properties:
@@ -41,7 +38,6 @@ Resources:
               - "ecr:PutImage"
             Principal:
               Service: "codebuild.amazonaws.com"
-
   CodeBuildProject:
       Type: AWS::CodeBuild::Project
       DependsOn: CodeBuildRole
@@ -62,7 +58,6 @@ Resources:
         Source:
           Type: CODEPIPELINE
           BuildSpec: infrastructure/image-buildspec.yml
-
   CodePipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
@@ -104,10 +99,8 @@ Resources:
           Configuration:
               ProjectName: !Ref CodeBuildProject
           RunOrder: 1
-
   ArtifactBucket:
     Type: AWS::S3::Bucket
-
   CodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
@@ -119,7 +112,7 @@ Resources:
             Service: codebuild.amazonaws.com
           Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AdministratorAccess #TODO: Reduce permissions
+        - arn:aws:iam::aws:policy/AdministratorAccess 
 
   CodePipelineRole:
     Type: AWS::IAM::Role
@@ -132,11 +125,10 @@ Resources:
             Service: codepipeline.amazonaws.com
           Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AdministratorAccess #TODO: Reduce permissions
-
+        - arn:aws:iam::aws:policy/AdministratorAccess 
 Outputs:
   CodeBuildImage:
     Description: Docker image with Maven libraries
+    Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ImageRepository}:${ApplicationStackName}"
     Export:
       Name: ServerlessAppBuildImage
-Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ImageRepository}:${ApplicationStackName}"
