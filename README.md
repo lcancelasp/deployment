@@ -12,7 +12,7 @@ Los eventos de API Gateway consiste en una solicitud a una función Lambda desde
 
 Scripts:
 
-provision.sh:
+setup.sh:
 
 infrastructure/image-cfn.yml   
   // CodeBuild Project in Docker env + CodePipeline Project with Github and S3 storage
@@ -26,5 +26,5 @@ infrastructure/app-buildspec.yml
 sam.yml
   // Post Lambda and Get Lambda functions with API Gateway. Escribe y lee en tabla de DynamoDB
 
-teardown.sh
+down.sh
   // Eliminar la tabla de DynamoDB, elimina el stack serverless-app, elimina el bucket S3 (artefacto), elimina el stack serverless-app-build-pipeline (codebuild + codepipeline) y por último elimina el repositorio de imagen Docker de ECR, y el stack serverless-app-image-pipeline
