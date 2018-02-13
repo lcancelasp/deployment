@@ -28,7 +28,7 @@ infrastructure/app-buildspec.yml
 sam.yml
   // Post Lambda and Get Lambda functions with API Gateway. Escribe y lee en tabla de DynamoDB
 
-down.sh
+down.sh (No está probado)
   // Eliminar la tabla de DynamoDB, elimina el stack serverless-app, elimina el bucket S3 (artefacto), elimina el stack serverless-app-build-pipeline (codebuild + codepipeline) y por último elimina el repositorio de imagen Docker de ECR, y el stack serverless-app-image-pipeline
 ```
 
@@ -41,4 +41,7 @@ BUILD: Después de que Maven construya los artefactos (.jar), y aún dentro de l
 POST-BUILD: La plantilla resultante packaged-sam.yml se genera con el comando aws cloudformation package en formato zip en un bucket de S3 "serverless-app-build-artifactbucket-XXXX"
 
 DEPLOYMENT: Los .class de get y post del código fuente, se suben a otro bucket de S3 "serverless-app-build-cfnbucket-XXXX"
+
+
+NOTA: la template “serverless-app” se genera automáticamente y es el que invoca finalmente a los endpoint del API Gateway
 ```
