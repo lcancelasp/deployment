@@ -12,7 +12,8 @@ public class GetLambda {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     private AmazonDynamoDB amazonDynamoDB = AmazonDynamoDBClientBuilder.defaultClient();
-    private String tableName = System.getenv("TABLE");
+    //private String tableName = System.getenv("TABLE");  serverless-app-Table-TTRSEWG8KEY4
+    private String tableName = System.getenv("serverless-app-Table-TTRSEWG8KEY4")
 
     public ApiGatewayProxyResponse handler(ApiGatewayProxyRequest request) throws IOException {
 

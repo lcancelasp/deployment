@@ -14,7 +14,8 @@ public class PostLambda {
     private ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     private DynamoDB dynamoDB = new DynamoDB(AmazonDynamoDBClientBuilder.defaultClient());
-    private String tableName = System.getenv("TABLE");
+    //private String tableName = System.getenv("TABLE");  serverless-app-Table-TTRSEWG8KEY4
+    private String tableName = System.getenv("serverless-app-Table-TTRSEWG8KEY4")
 
     public ApiGatewayProxyResponse handler(ApiGatewayProxyRequest request) throws IOException {
         Data data = objectMapper.readValue(request.body, Data.class);
