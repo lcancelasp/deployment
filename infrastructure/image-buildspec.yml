@@ -5,6 +5,7 @@ phases:
       - docker build -f infrastructure/Dockerfile -t serverless-app .
   post_build:
     commands:
-      - aws ecr get-login --region eu-west-1 --registry-ids 193006638607 > output.sh && chmod +x output.sh && ./output.sh && docker push serverless-app
+      - eval $(aws ecr get-login --region eu-west-1 --registry-ids 193006638607) && docker tag serverless-app:latest 193006638607.dkr.ecr.eu-west-1.amazonaws.com/serverless-app:latest && docker push 193006638607.dkr.ecr.eu-west-1.amazonaws.com/serverless-app:latest
+
 ### eval $(aws ecr get-login --registry-ids 193006638607) && 
 
