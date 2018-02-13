@@ -38,4 +38,7 @@ En el script de setup, no lanzar la segunda plantilla de serverless-app-build, h
 
 BUILD: Después de que Maven construya los artefactos (.jar), y aún dentro de la acción "Build" del Pipeline, el comando aws cloudformation package utiliza el modelo de aplicación Serverless (también conocido como SAM) para determinar qué jars deberían cargarse en S3 para actualizar el código en las funciones de Lambda.
 
+POST-BUILD: La plantilla resultante packaged-sam.yml se genera con el comando aws cloudformation package en formato zip en un bucket de S3 "serverless-app-build-artifactbucket-XXXX"
+
+DEPLOYMENT: Los .class de get y post del código fuente, se suben a otro bucket de S3 "serverless-app-build-cfnbucket-XXXX"
 ```
