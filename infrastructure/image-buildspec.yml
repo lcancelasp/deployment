@@ -1,10 +1,10 @@
-
 version: 0.2
-
+# maven image ecr repository
+# 193006638607.dkr.ecr.eu-west-1.amazonaws.com/serve-image-qhpyogqtrdfy:serverless-app
 phases:
   build:
     commands:
       - docker build -f infrastructure/Dockerfile -t maven_image .
   post_build:
     commands:
-      - eval $(aws ecr get-login --no-include-email --region eu-west-1) && docker tag maven_image:latest 193006638607.dkr.ecr.eu-west-1.amazonaws.com/maven_image:latest && docker push 193006638607.dkr.ecr.eu-west-1.amazonaws.com/maven_image:latest
+      - eval $(aws ecr get-login --no-include-email --region eu-west-1) && docker tag maven_image:latest 193006638607.dkr.ecr.eu-west-1.amazonaws.com/serve-image-qhpyogqtrdfy:serverless-app && docker push 193006638607.dkr.ecr.eu-west-1.amazonaws.com/serve-image-qhpyogqtrdfy:serverless-app
