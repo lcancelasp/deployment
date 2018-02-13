@@ -10,4 +10,4 @@ phases:
 artifacts:
   type: zip
   files:
-- packaged-sam.yml
+    - packaged-sam.yml
