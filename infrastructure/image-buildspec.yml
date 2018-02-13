@@ -1,12 +1,13 @@
 version: 0.2
-# GET REPOSITORY NAME: serve-image-h4dhsvp16m4n
+# GET REPOSITORY NAME: serve-image-h4dhsvp16m4n ?
+# ENV VARS
+#ECR_ACCOUNT_ID
+#ECR_IMAGE_TAG
 phases:
   build:
     commands:
-      - docker build -f infrastructure/Dockerfile -t serverless-app .
+      - docker build -f infrastructure/Dockerfile -t ${ECR_IMAGE_TAG} .
   post_build:
     commands:
-      - eval $(aws ecr get-login --region eu-west-1 --registry-ids 193006638607) && docker tag serverless-app:latest 193006638607.dkr.ecr.eu-west-1.amazonaws.com/serve-image-h4dhsvp16m4n:latest && docker push 193006638607.dkr.ecr.eu-west-1.amazonaws.com/serve-image-h4dhsvp16m4n:latest
-
-### eval $(aws ecr get-login --registry-ids 193006638607) && 
+      - eval $(aws ecr get-login --region eu-west-1 --registry-ids ${ECR_ACCOUNT_ID}) && docker push ${ECR_IMAGE_TAG}
 
