@@ -3,7 +3,6 @@ Transform: AWS::Serverless-2016-10-31
 Description: Serverless App
 
 Resources:
-
   PostLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -72,4 +71,4 @@ Outputs:
         - !Ref ServerlessRestApi
         - '.execute-api.'
         - !Ref 'AWS::Region'
-- '.amazonaws.com/prod'
+        - '.amazonaws.com/prod'
