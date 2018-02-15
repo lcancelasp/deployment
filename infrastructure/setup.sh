@@ -9,7 +9,9 @@ token=XXXXXXXXXXXXXXXX
 
 aws cloudformation create-stack  --stack-name "${APPLICATION_STACK_NAME}-image-build" \
 --capabilities CAPABILITY_IAM \
---template-body file://infrastructure/image-cfn.yml --parameters ParameterKey=GitHubToken,ParameterValue="${token}" ParameterKey=GitHubUser,ParameterValue="lcancelasp" ParameterKey=GitHubRepository,ParameterValue="deployment"
+--template-body file://infrastructure/image-cfn.yml --parameters ParameterKey=GitHubToken,ParameterValue="${token}" \
+ParameterKey=GitHubUser,ParameterValue="lcancelasp" ParameterKey=GitHubRepository,ParameterValue="deployment" \
+ParameterKey=GitHubBranch,ParameterValue="studentX"
 
 aws cloudformation wait stack-create-complete \
   --stack-name ${APPLICATION_STACK_NAME}-image-build
@@ -23,6 +25,7 @@ aws cloudformation create-stack \
   --capabilities CAPABILITY_IAM  \
   --template-body file://infrastructure/app-build-cfn.yml \
   --parameters ParameterKey=GitHubToken,ParameterValue="${token}" \
-               ParameterKey=GitHubUser,ParameterValue="lcancelasp" \
-               ParameterKey=GitHubRepository,ParameterValue="deployment" \
+ParameterKey=GitHubUser,ParameterValue="lcancelasp" \
+ParameterKey=GitHubRepository,ParameterValue="deployment" \
+ParameterKey=GitHubBranch,ParameterValue="studentX" \
 ParameterKey=CodeBuildImage,ParameterValue=${CODE_BUILD_IMAGE}
