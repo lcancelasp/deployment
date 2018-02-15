@@ -2,8 +2,6 @@
 
 set -e
 
-[[ $# -eq 0 ]] && exit 2
-
 APPLICATION_STACK_NAME="serverless-app"
 token=XXXXXXXXXXXXXXXX
 
