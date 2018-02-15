@@ -34,6 +34,9 @@ down.sh (No está probado)
 
 # NOTAS
 ```
+En el script de setup, especificar la rama de nuestro usuario de AWS (ParameterKey=GitHubBranch,ParameterValue="studentX"), y el token de
+nuestro usuario de GitHub
+
 En el script de setup, no lanzar la segunda plantilla de serverless-app-build, hasta que se haya ejecutado el image build de la anterior serverless-app-image-build (en codepipeline serverless-app-build-codepipeline-XXXX)!
 
 BUILD: Después de que Maven construya los artefactos (.jar), y aún dentro de la acción "Build" del Pipeline, el comando aws cloudformation package utiliza el modelo de aplicación Serverless (también conocido como SAM) para determinar qué jars deberían cargarse en S3 para actualizar el código en las funciones de Lambda.
